@@ -233,7 +233,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="index.php/user_authentication/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a onclick="logout()" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -256,8 +256,8 @@
           <img src="assets/admin.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-             <p>Welcome Home,</p>
-          <small><?php echo "$fullname"?></small>
+             <p>Welcome admin,</p>
+          <small></small>
         </div>
       </div>
    
@@ -367,6 +367,8 @@
 
 
  <script src = "firebaseConfig.js"></script>
+ <script src = "homeAuth.js"></script>
+
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
