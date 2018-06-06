@@ -1,7 +1,7 @@
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-  	  // user is signed in.
-   		window.location.href = "pet_entry.html";
+  	//  user is signed in.
+   	window.location.href = "index.html";
   } else {
     // No user is signed in.
    

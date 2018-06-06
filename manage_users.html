@@ -245,7 +245,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url() ?>index.php/user_authentication/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="" onclick="logout()" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -314,7 +314,7 @@
             </span>
           </a>
         <ul class="treeview-menu">
-          <li><a href="<?php echo base_url();?>index.php/Entry_controller/entry"><i class="fa fa-list"></i>Pet Entries</a></li>
+          <li><a href="pet_entry.html"><i class="fa fa-list"></i>Pet Entries</a></li>
             <li><a href="<?php echo base_url();?>index.php/Category_controller/category"><i class="fa fa-edit"></i>Pet Category</a></li>
             <li><a href="<?php echo base_url();?>index.php/Breed_controller/breed"><i class="fa fa-edit"></i>Pet Breed</a></li>
             <li><a href="<?php echo base_url();?>index.php/History_controller/history"><i class="fa fa-history"></i>Pet History</a>
@@ -400,6 +400,8 @@ script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 
 
  <script src = "firebaseConfig.js"></script>
+  <script src = "homeAuth.js"></script>
+
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

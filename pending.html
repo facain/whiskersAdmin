@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WHISKERS Admin Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="assets/logo.png">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+
+
+  </head>
+
+  <body>
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+      <div class="side-navbar-wrapper">
+        <!-- Sidebar Header    -->
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+          <!-- User Info-->
+           <div class="sidenav-header-inner text-center"><img src="assets/logo.png" alt="person" class="img-fluid rounded-circle">
+            <h2 class="h5">Welcome</h2><span>Administrator</span>
+          </div>
+          <!-- Small Brand information, appears on minimized sidebar-->
+          <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"><strong class="text-primary">W</strong></a></div>
+        </div>
+        <!-- Sidebar Navigation Menus-->
+        <div class="main-menu">
+          <h5 class="sidenav-heading">Main</h5>
+          <ul id="side-main-menu" class="side-menu list-unstyled">                  
+            <li><a href="index.html"> <i class="fa fa-home"></i>Home</a></li>
+            <li><a href="users.html"> <i class="fa fa-user"></i>Users</a></li>
+            <li><a href="entries.html"> <i class="fa fa-bar-chart"></i>Pet Entries</a></li>
+            <li><a href="pending.html"> <i class="fa fa-copy"></i>Pending Pet Entries</a></li>
+            <li><a href="history.html"> <i class="fa fa-archive"></i>History</a></li>
+            <li><a onclick="logout()"> <i class="fa fa-sign-out"></i>Logout</a></li>
+          </ul>
+        </div>
+    
+      </div>
+    </nav>
+    <div class="page">
+      <!-- navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
+                  <div class="brand-text d-none d-md-inline-block"><span>Whiskers</span><strong class="text-primary"> Dashboard</strong></div></a></div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <!-- Counts Section -->
+      <section class="dashboard-counts section-padding">
+        <div class="container-fluid">
+               <table id="myTable" class="display table-bordered" cellspacing="0" width="100%">
+                    <thead style="background-color:black;color:white;">
+                      </thead>
+                </table>
+        </div>
+      </section>
+      
+    </div>
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+      <!-- jQuery 3 -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+
+    <!-- Add additional services you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-functions.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+
+    <script src = "firebaseConfig.js"></script>
+    <script src = "homeAuth.js"></script> 
+
+
+
+<script type="text/javascript">
+  $(document).ready( function () {
+      var table = $('#myTable').DataTable({ 
+          "scrollY":        "400px",
+        "scrollCollapse": true,
+       
+      "columns":[
+      {"title":"Image","data":null,"defaultContent": "<button id = 'view Pic' class = 'viewPic' >View Pic</button>"},
+      {"title":"Pet Name", "data":'[dataSet].0'},
+      {"title":"Category", "data":'[dataSet].1'},
+       {"name": "id" ,"data":'[dataSet].6',"visible":false,"searchable":false},
+     
+      {"title":"Breed", "data":'[dataSet].2'},
+      {"title":"Gender", "data":'[dataSet].3'},
+      {"title":"Birthdate", "data":'[dataSet].4'},
+      {"title":"Action","defaultContent": "<button id = 'ver_Entry' class = 'verEntry' >Verify</button>"}
+      ]
+       });    
+
+      
+      
+      $('#myTable tbody').on( 'click', 'button.verEntry', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        var cRow = table.row( $(this).parents('tr') );
+        var query = firebase.database().ref('pet').orderByKey().equalTo(data[0][6]);
+        query.once("child_added",function(snapshot){
+           snapshot.ref.update({verStat:"1"})
+           alert("Entry Verified!");
+         });
+        table.row( $(this).parents('tr') ).remove().draw(false);       //WS table.rows.add(dataWhole).draw();
+        
+
+      }); 
+
+        $('#myTable tbody').on( 'click', 'button.viewPic', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+       $('#img').attr('src',data[0][5]); 
+       $('#modalName').html(data[0][0]);
+       $('#modalCategory').html(data[0][1]);
+       $('#modalBreed').html(data[0][2]);
+        $('#myModal').modal("show");
+
+      }); 
+
+          
+
+
+      /*function viewButton(data, type, full, meta) 
+      {
+        var data1 = data;
+        var stringg= "string";
+        document.getElementById("img").src = data1;
+        return '<button data-toggle="modal" data-target="#myModal">View Picture</button>'
+      }*/
+
+
+     function getImg(data, type, full, meta) {
+            return '<a href = "'+data+' "><img height ="100px" width ="150px"src="'+data+'" /></a>';
+             }
+
+   var firebaseRef = firebase.database().ref().child('pet');
+
+   firebaseRef.on('child_added', snap =>{
+    if(snap.child("verStat").val()=="0"){
+    var dataSet = [snap.child("pet_name").val(),snap.child("category").val(),snap.child("breed").val(),snap.child("gender").val(),
+            snap.child("birthdate").val(),snap.child("imgUrl").val(),snap.child("id").val()];
+    console.log(dataSet)  ;
+    table.row.add([dataSet]).draw(false); 
+   }
+   })
+
+   
+});
+</script>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 id ="modalName" class="modal-title"></h4>
+              <h4 id ="modalCategory" class="modal-title"></h4>
+        
+          <h4 id ="modalBreed" class="modal-title"></h4>
+        
+        </div>
+
+        <div id ="getPic" class="modal-body">
+          <img id = "img" style =" margin-left: 80px;
+        margin-right: 100px; border:5px solid black;"" height ="300px" width =  "300px">
+          <p></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  </body>
+</html>

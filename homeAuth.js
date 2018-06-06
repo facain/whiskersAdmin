@@ -1,10 +1,11 @@
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
   	  // user is signed in.
+      console.log('ACAIN');     
   } else {
-    // No user is signed in.
+     //No user is signed in.
    
-          window.location.href = "login_form.html";
+         window.location.href = "login.html";
 
   }
 });
@@ -12,9 +13,11 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function logout(){
 	firebase.auth().signOut().then(function() {
-    
 	  // Sign-out successful.
 	}).catch(function(error) {
 	  // An error happened.
+
 	});	
+
+
 }
